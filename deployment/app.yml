@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: build-service-demo
+  labels:
+    app: build-service-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: build-service-demo
+  template:
+    metadata:
+      labels:
+        app: build-service-demo
+    spec:
+      containers:
+        - name: build-service-demo
+          image: phx.ocir.io/axsewmzamo2h/build-service-demo:${BuildServiceDemoVersion}
+          ports:
+            - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: build-service-demo-service
+  labels:
+    app: build-service-demo
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8081
+      targetPort: 8081
+  selector:
+    app: build-service-demo
