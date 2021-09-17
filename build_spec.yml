@@ -1,0 +1,28 @@
+version: 0.1
+component: build
+timeoutInSeconds: 6000
+runAs: root
+shell: bash
+env:
+  exportedVariables:
+    - BuildServiceDemoVersion
+
+steps:
+  - type: Command
+    name: "Build Source"
+    timeoutInSeconds: 4000
+    command: |
+      echo $PATH
+      mvn clean install
+  - type: Command
+    timeoutInSeconds: 400
+    name: "Dockerizer"
+    command: |
+      BuildServiceDemoVersion=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
+      echo $BuildServiceDemoVersion
+      docker build -t build-service-demo .
+      
+outputArtifacts:
+  - name: build-service-demo
+    type: DOCKER_IMAGE
+    location: build-service-demo
