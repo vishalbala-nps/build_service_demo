@@ -26,3 +26,6 @@ outputArtifacts:
   - name: build-service-demo
     type: DOCKER_IMAGE
     location: build-service-demo
+  - name: build-service-demo-kube-manifest
+    type: BINARY
+    location: deployment/app.yml
