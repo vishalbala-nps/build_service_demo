@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: build-service-demo
-          image: phx.ocir.io/axsewmzamo2h/build-service-demo:${BuildServiceDemoVersion}
+          image: phx.ocir.io/axsewmzamo2h/dlcbld-demo:${BuildServiceDemoVersion}
           ports:
             - containerPort: 8081
 ---
