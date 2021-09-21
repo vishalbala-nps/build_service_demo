@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: build-service-demo
+  name: dlcbld-demo
   labels:
-    app: build-service-demo
+    app: dlcbld-demo
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: build-service-demo
+      app: dlcbld-demo
   template:
     metadata:
       labels:
-        app: build-service-demo
+        app: dlcbld-demo
     spec:
       containers:
-        - name: build-service-demo
+        - name: dlcbld-demo
           image: phx.ocir.io/axsewmzamo2h/dlcbld-demo:${BuildServiceDemoVersion}
           ports:
             - containerPort: 8081
@@ -23,13 +23,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: build-service-demo-service
+  name: dlcbld-demo-service
   labels:
-    app: build-service-demo
+    app: dlcbld-demo
 spec:
   type: LoadBalancer
   ports:
     - port: 8081
       targetPort: 8081
   selector:
-    app: build-service-demo
+    app: dlcbld-demo
