@@ -18,7 +18,8 @@ steps:
     timeoutInSeconds: 400
     name: "Dockerizer"
     command: |
-      BuildServiceDemoVersion=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
+      #BuildServiceDemoVersion=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
+      BuildServiceDemoVersion="demo_phase2"
       echo $BuildServiceDemoVersion
       docker build -t build-service-demo .
       
